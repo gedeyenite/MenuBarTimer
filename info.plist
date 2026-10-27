@@ -88,11 +88,12 @@
 				<integer>102</integer>
 				<key>script</key>
 				<string>APP_PATH="/Applications/MenuBarTimer.app"
-if [ ! -d "" ] &amp;&amp; [ -d "./MenuBarTimer.app" ]; then
+if [ ! -d "$APP_PATH" ] &amp;&amp; [ -d "./MenuBarTimer.app" ]; then
     cp -R "./MenuBarTimer.app" "/Applications/"
-    /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -f ""
+    /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -f "$APP_PATH"
 fi
-open -n -a "" --args "" --sound "Radar"</string>
+open -n -a "$APP_PATH" --args "$@" --sound "${alert_sound:-Radar}"
+</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -136,11 +137,12 @@ open -n -a "" --args "" --sound "Radar"</string>
 				<string>Checking active timers…</string>
 				<key>script</key>
 				<string>APP_PATH="/Applications/MenuBarTimer.app"
-if [ ! -d "" ] &amp;&amp; [ -d "./MenuBarTimer.app" ]; then
+if [ ! -d "$APP_PATH" ] &amp;&amp; [ -d "./MenuBarTimer.app" ]; then
     cp -R "./MenuBarTimer.app" "/Applications/"
-    /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -f ""
+    /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -f "$APP_PATH"
 fi
-"/Contents/MacOS/MenuBarTimer" --list</string>
+"$APP_PATH/Contents/MacOS/MenuBarTimer" --list
+</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -169,7 +171,8 @@ fi
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>/Applications/MenuBarTimer.app/Contents/MacOS/MenuBarTimer --cancel ""</string>
+				<string>/Applications/MenuBarTimer.app/Contents/MacOS/MenuBarTimer --cancel "$1"
+</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
