@@ -1,0 +1,5 @@
+.DS_Store
+build/
+test_badge.png
+*.o
+*.swp

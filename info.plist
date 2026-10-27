@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com-alfred.menubartimer</string>
+	<key>category</key>
+	<string>Tools</string>
+	<key>connections</key>
+	<dict>
+		<key>B7E84B1A-0B82-4E14-8F30-74D6DF81E4B5</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>C2456E7B-231A-4924-B1F7-5D9E0124378A</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>C2456E7B-231A-4924-B1F7-5D9E0124378A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>E3F58A91-4972-4C10-9F12-85D3B8964201</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>DAF1BDF6-7B16-4673-BECA-634D1CC2C4FF</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D8441376-EC11-4F61-A97A-30A119D6426A</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>g3d3y3n1t3</string>
+	<key>description</key>
+	<string>Starts a live countdown timer in the macOS menu bar with sound and notification alerts.</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Menu Bar Timer</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>timer</string>
+				<key>subtext</key>
+				<string>Enter duration and optional label (e.g. 5m Pasta or 300 Tea)</string>
+				<key>text</key>
+				<string>Start Menu Bar Timer</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>DAF1BDF6-7B16-4673-BECA-634D1CC2C4FF</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>APP_PATH="/Applications/MenuBarTimer.app"
+if [ ! -d "" ] &amp;&amp; [ -d "./MenuBarTimer.app" ]; then
+    cp -R "./MenuBarTimer.app" "/Applications/"
+    /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -f ""
+fi
+open -n -a "" --args "" --sound "Radar"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>D8441376-EC11-4F61-A97A-30A119D6426A</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>timers</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Checking active timers…</string>
+				<key>script</key>
+				<string>APP_PATH="/Applications/MenuBarTimer.app"
+if [ ! -d "" ] &amp;&amp; [ -d "./MenuBarTimer.app" ]; then
+    cp -R "./MenuBarTimer.app" "/Applications/"
+    /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -f ""
+fi
+"/Contents/MacOS/MenuBarTimer" --list</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>View running timers • Press Enter to cancel</string>
+				<key>title</key>
+				<string>Active Timers</string>
+				<key>type</key>
+				<integer>5</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>B7E84B1A-0B82-4E14-8F30-74D6DF81E4B5</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>/Applications/MenuBarTimer.app/Contents/MacOS/MenuBarTimer --cancel ""</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>C2456E7B-231A-4924-B1F7-5D9E0124378A</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>The countdown timer was ended.</string>
+				<key>title</key>
+				<string>Timer Cancelled</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>E3F58A91-4972-4C10-9F12-85D3B8964201</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>B7E84B1A-0B82-4E14-8F30-74D6DF81E4B5</key>
+		<dict>
+			<key>xpos</key>
+			<real>420.0</real>
+			<key>ypos</key>
+			<real>470.0</real>
+		</dict>
+		<key>C2456E7B-231A-4924-B1F7-5D9E0124378A</key>
+		<dict>
+			<key>xpos</key>
+			<real>690.0</real>
+			<key>ypos</key>
+			<real>470.0</real>
+		</dict>
+		<key>D8441376-EC11-4F61-A97A-30A119D6426A</key>
+		<dict>
+			<key>xpos</key>
+			<real>690.0</real>
+			<key>ypos</key>
+			<real>320.0</real>
+		</dict>
+		<key>DAF1BDF6-7B16-4673-BECA-634D1CC2C4FF</key>
+		<dict>
+			<key>xpos</key>
+			<real>420.0</real>
+			<key>ypos</key>
+			<real>315.0</real>
+		</dict>
+		<key>E3F58A91-4972-4C10-9F12-85D3B8964201</key>
+		<dict>
+			<key>xpos</key>
+			<real>930.0</real>
+			<key>ypos</key>
+			<real>470.0</real>
+		</dict>
+	</dict>
+	<key>userconfigurationconfig</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>Radar</string>
+				<key>pairs</key>
+				<array>
+					<array>
+						<string>Radar (Apple Timer Default)</string>
+						<string>Radar</string>
+					</array>
+					<array>
+						<string>Alarm (Classic Clock Alarm)</string>
+						<string>Alarm</string>
+					</array>
+					<array>
+						<string>Hero (Upbeat Fanfare)</string>
+						<string>Hero</string>
+					</array>
+					<array>
+						<string>Glass (Crystal Chime)</string>
+						<string>Glass</string>
+					</array>
+					<array>
+						<string>Ping (Subtle Ping)</string>
+						<string>Ping</string>
+					</array>
+					<array>
+						<string>Sosumi (Classic Macintosh)</string>
+						<string>Sosumi</string>
+					</array>
+					<array>
+						<string>Submarine (Sonar)</string>
+						<string>Submarine</string>
+					</array>
+				</array>
+			</dict>
+			<key>description</key>
+			<string>Choose the sound that plays when the countdown timer finishes.</string>
+			<key>label</key>
+			<string>Alert Sound</string>
+			<key>type</key>
+			<string>popupbutton</string>
+			<key>variable</key>
+			<string>alert_sound</string>
+		</dict>
+	</array>
+	<key>webaddress</key>
+	<string></string>
+</dict>
+</plist>
